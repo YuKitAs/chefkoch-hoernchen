@@ -1,4 +1,4 @@
-# Awesome Project Build with TypeORM
+# Chefkoch Hörnchen
 
 Steps to run this project:
 
