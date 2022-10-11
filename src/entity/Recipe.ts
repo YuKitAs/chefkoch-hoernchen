@@ -33,7 +33,7 @@ export class Recipe {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column({ length: 50, unique: true })
+    @Column({ length: 100, unique: true })
     name!: string
 
     @Index()
@@ -49,9 +49,9 @@ export class Recipe {
         type: 'enum',
         enum: Ingredient,
         array: true,
-        default: [Ingredient.NOODLE]
+        nullable: true
     })
-    ingredients!: Ingredient[]
+    ingredients: Ingredient[]
 
     @Index()
     @Column({
