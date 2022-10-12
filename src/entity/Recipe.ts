@@ -1,9 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, Index } from "typeorm"
 
 export enum MenuType {
-    BREAKFAST = 'Fruehstueck',
+    BREAKFAST = 'Frühstück',
     DESSERT = 'Dessert',
-    DRINKS = 'Getraenke',
+    DRINKS = 'Getränke',
     MAIN_DISH = 'Hauptspeise',
     SIDE_DISH = 'Beilage',
     SNACKS = 'Snacks',
@@ -16,15 +16,15 @@ export enum Ingredient {
     NOODLE = 'Nudeln',
     POTATO = 'Kartoffeln',
     RICE = 'Reis',
-    SEAFOOD = 'Meeresfruechte',
-    VEGETABLES = 'Gemuese'
+    SEAFOOD = 'Meeresfrüchte',
+    VEGETABLES = 'Gemüse'
 }
 
 export enum Flavor {
     SALTY = 'Salzig',
     SOUR = 'Sauer',
     SPICY = 'Scharf',
-    SWEET = 'Suess'
+    SWEET = 'Süß'
 }
 
 @Entity()
@@ -38,6 +38,7 @@ export class Recipe {
 
     @Index()
     @Column({
+        name: 'menu_type',
         type: 'enum',
         enum: MenuType,
         default: MenuType.MAIN_DISH
@@ -62,7 +63,7 @@ export class Recipe {
     })
     flavors!: Flavor[]
 
-    @Column()
+    @Column({ name: 'prep_time' })
     prepTime!: number
 
     @Column('text', { nullable: true })

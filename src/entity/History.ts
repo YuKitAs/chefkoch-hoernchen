@@ -7,7 +7,7 @@ export class History {
     id: number
 
     @Index()
-    @Column()
+    @Column({ name: 'recipe_id' })
     recipeId!: number
 
     @Column({ type: 'date' })
