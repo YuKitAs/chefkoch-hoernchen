@@ -9,40 +9,19 @@ const questions = [
       type: 'multiselect',
       name: 'menuType',
       message: 'Welche Menüart?',
-      choices: [
-        { id: 0, value: MenuType.BREAKFAST },
-        { id: 1, value: MenuType.DESSERT },
-        { id: 2, value: MenuType.DRINKS },
-        { id: 3, value: MenuType.MAIN_DISH },
-        { id: 4, value: MenuType.SIDE_DISH },
-        { id: 5, value: MenuType.SNACKS },
-        { id: 6, value: MenuType.STARTER }
-      ]
+      choices: Object.values(MenuType).map(value => { return { value } })
     },
     {
       type: 'multiselect',
       name: 'ingredient',
       message: 'Welche Zutaten?',
-      choices: [
-        { id: 0, value: Ingredient.FISH },
-        { id: 1, value: Ingredient.MEAT },
-        { id: 2, value: Ingredient.NOODLE },
-        { id: 3, value: Ingredient.POTATO },
-        { id: 4, value: Ingredient.RICE },
-        { id: 5, value: Ingredient.SEAFOOD },
-        { id: 6, value: Ingredient.VEGETABLES }
-      ]
+      choices: Object.values(Ingredient).map(value => { return { value } })
     },
     {
       type: 'multiselect',
       name: 'flavor',
       message: 'Welcher Geschmack?',
-      choices: [
-        { id: 0, value: Flavor.SALTY },
-        { id: 1, value: Flavor.SOUR },
-        { id: 2, value: Flavor.SPICY },
-        { id: 3, value: Flavor.SWEET }
-      ]
+      choices: Object.values(Flavor).map(value => { return { value } })
     },
     {
       type: 'number',
