@@ -37,7 +37,7 @@ AppDataSource.initialize().then(async () => {
     const response = await prompts(questions);
 
     const menuTypes = response.menuType && response.menuType.length > 0 ? response.menuType : Object.values(MenuType)
-    const ingredients = response.ingredient
+    const ingredients = response.ingredient && response.ingredient.length > 0 ? response.ingredient : Object.values(Ingredient)
     const flavors = response.flavor && response.flavor.length > 0 ? response.flavor : Object.values(Flavor)
     const prepTime = response.prepTime ? response.prepTime : 1440
 
@@ -47,6 +47,7 @@ AppDataSource.initialize().then(async () => {
                             for (const ingredient of ingredients) {
                                 qb.orWhere(":ingredient = ANY(ingredients)", { ingredient })
                             }
+                            qb.orWhere("recipe.ingredients IS NULL")
                         }))
                         .andWhere(new Brackets(qb => {
                             for (const flavor of flavors) {
