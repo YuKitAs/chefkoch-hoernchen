@@ -44,21 +44,19 @@ AppDataSource.initialize().then(async () => {
     const builder = AppDataSource.getRepository(Recipe).createQueryBuilder("recipe")
                         .where("recipe.menuType IN (:...menuTypes)", { menuTypes })
                         .andWhere(new Brackets(qb => {
-                            for (const ingredient of ingredients) {
-                                qb.orWhere(":ingredient = ANY(ingredients)", { ingredient })
+                            qb.where("recipe.ingredients && ARRAY[:...ingredients]::recipe_ingredients_enum[]", { ingredients })
+
+                            if (ingredients.length === Object.values(Ingredient).length) {
+                                qb.orWhere("recipe.ingredients IS NULL")
                             }
-                            qb.orWhere("recipe.ingredients IS NULL")
                         }))
                         .andWhere(new Brackets(qb => {
-                            for (const flavor of flavors) {
-                                qb.orWhere(":flavor = ANY(flavors)", { flavor })
-                            }
+                            qb.where("recipe.flavors && ARRAY[:...flavors]::recipe_flavors_enum[]", { flavors })
                         }))
                         .andWhere("recipe.prepTime <= :prepTime", { prepTime })
 
     // DEBUG
-    // console.log(builder.getQuery())
-    // console.log(builder.getParameters())
+    // console.log(builder.getQueryAndParameters())
 
     const recipes = await builder.getMany()
 
