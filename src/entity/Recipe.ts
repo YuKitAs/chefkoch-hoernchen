@@ -14,6 +14,7 @@ export enum Ingredient {
     FISH = 'Fisch',
     MEAT = 'Fleisch',
     NOODLE = 'Nudeln',
+    FRUIT = 'Obst',
     POTATO = 'Kartoffeln',
     RICE = 'Reis',
     SEAFOOD = 'Meeresfrüchte',

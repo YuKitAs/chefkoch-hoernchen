@@ -9,19 +9,19 @@ const questions = [
       type: 'multiselect',
       name: 'menuType',
       message: 'Welche Menüart?',
-      choices: Object.values(MenuType).map(value => { return { value } })
+      choices: Object.values(MenuType).map(value => ({ value }))
     },
     {
       type: 'multiselect',
       name: 'ingredient',
       message: 'Welche Zutaten?',
-      choices: Object.values(Ingredient).map(value => { return { value } })
+      choices: Object.values(Ingredient).map(value => ({ value }))
     },
     {
       type: 'multiselect',
       name: 'flavor',
       message: 'Welcher Geschmack?',
-      choices: Object.values(Flavor).map(value => { return { value } })
+      choices: Object.values(Flavor).map(value => ({ value }))
     },
     {
       type: 'number',
