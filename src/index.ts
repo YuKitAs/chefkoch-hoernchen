@@ -3,6 +3,7 @@ import { AppDataSource } from "./data-source"
 import { History } from "./entity/History"
 import { Flavor, Ingredient, MenuType, Recipe } from "./entity/Recipe"
 import prompts from 'prompts'
+import { exit } from "process";
 
 const questions = [
     {
@@ -66,12 +67,16 @@ AppDataSource.initialize().then(async () => {
         console.log('Rezeptideen:')
         for (const recipe of recipes) {
             console.log(Object.fromEntries(Object.entries(recipe).filter(([key]) => key !== 'id' && recipe[key])))
-            const recipeDate = (await AppDataSource.getRepository(History).findOne({ where: { recipeId: recipe.id }}))?.date
-            if (recipeDate) {
-                console.log('Zuletzt gekocht: ', new Date(recipeDate).toLocaleDateString('de-DE', { dateStyle: 'full' }))
+            const histories = await AppDataSource.getRepository(History).find({ where: { recipeId: recipe.id }, order: { date: "DESC" } })
+            const count = histories.length
+            if (count > 0) {
+                const formattedDate = new Date(histories[0].date).toLocaleDateString('de-DE', { dateStyle: 'full' })
+                console.log(`${count} Mal gekocht. Zuletzt gekocht am ${formattedDate}.`)
             }
+            console.log()
         }
         console.log('Viel Spaß :)')
+        exit(0)
     }
 
 }).catch(error => console.log(error))
