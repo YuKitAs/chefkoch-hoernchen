@@ -33,7 +33,7 @@ const questions = [
 
 AppDataSource.initialize().then(async () => {
 
-    console.log('Hallo, mein Chefkoch-Hörnchen, worauf hättest du Lust zu kochen? 🍳')
+    console.log('Hallo, mein Chefkoch-Hörnchen, worauf hättest du Lust? 🍳')
 
     const response = await prompts(questions);
 
@@ -71,7 +71,7 @@ AppDataSource.initialize().then(async () => {
             const count = histories.length
             if (count > 0) {
                 const formattedDate = new Date(histories[0].date).toLocaleDateString('de-DE', { dateStyle: 'full' })
-                console.log(`${count} Mal gekocht. Zuletzt gekocht am ${formattedDate}.`)
+                console.log(`${count} Mal zubereitet. Zuletzt am ${formattedDate}.`)
             }
             console.log()
         }
