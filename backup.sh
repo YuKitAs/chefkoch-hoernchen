@@ -1,0 +1,1 @@
+docker exec -i chefkoch /bin/bash -c "PGPASSWORD=test pg_dump --username test test" > ./backups/backup_`date +%Y-%d-%m`.sql
