@@ -1,7 +1,10 @@
 # Chefkoch Hörnchen
 
-Steps to run this project:
+## Steps to run this project:
 
-1. Run `npm i` command
-2. Setup database settings inside `data-source.ts` file
-3. Run `npm start` command
+1. Setup database settings in `data-source.ts`
+2. Run `npm start`
+
+## Backup and restore data:
+
+Run `./backup.sh` and `./restore.sh`.
