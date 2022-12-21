@@ -13,5 +13,5 @@ export const AppDataSource = new DataSource({
     synchronize: true,
     logging: false,
     entities: [Recipe, History],
-    migrations: ['migration/*.ts'],
+    migrations: [__dirname + '/migration/*.ts'],
 })
