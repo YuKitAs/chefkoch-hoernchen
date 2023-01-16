@@ -51,6 +51,12 @@ export class RecipeSeed1665430938188 implements MigrationInterface {
       VALUES ('Mojito', 'Getränke', '{"Süß", "Sauer"}', 10, 'https://www.gutekueche.at/mojito-cocktail-rezept-17926')
       ON CONFLICT (name) DO NOTHING;`
     )
+
+    await queryRunner.query(
+      `INSERT INTO recipe (name, menu_type, ingredients, flavors, prep_time)
+      VALUES ('Nudeln mit Lachs und Sahnesoße', 'Hauptspeise', '{"Nudeln", "Fisch"}', '{"Salzig"}', 20)
+      ON CONFLICT (name) DO NOTHING;`
+    )
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
