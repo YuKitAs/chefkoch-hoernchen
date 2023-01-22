@@ -57,6 +57,12 @@ export class RecipeSeed1665430938188 implements MigrationInterface {
       VALUES ('Nudeln mit Lachs und Sahnesoße', 'Hauptspeise', '{"Nudeln", "Fisch"}', '{"Salzig"}', 20)
       ON CONFLICT (name) DO NOTHING;`
     )
+
+    await queryRunner.query(
+      `INSERT INTO recipe (name, menu_type, flavors, prep_time, url)
+      VALUES ('Pina Colada', 'Getränke', '{"Süß"}', 10, 'https://www.lecker.de/cocktail-klassiker-pina-colada-2037.html')
+      ON CONFLICT (name) DO NOTHING;`
+    )
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
